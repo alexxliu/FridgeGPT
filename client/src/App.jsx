@@ -1,30 +1,47 @@
 import styles from './index.module.css'
-import robotImg from './assets/robot.jpg'
+import fridgeImg from './assets/fridge.jpg'
 
 import { useState } from 'react'
 
 function App() {
-  const [thoughtDescription, setThoughtDescription] = useState("")
+  const [ingredients, setIngredients] = useState("");
+  const [recipe, setRecipe] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("form submitted: ", thoughtDescription)
+    
+    const recipe = await generateRecipe();
+    setRecipe(recipe)
+  }
+
+  const generateRecipe = async () => {
+    const response = await fetch("http://localhost:3005/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ ingredients: ingredients}),
+    });
+
+    const data = await response.json();
+    return data.response.trim();
   }
 
   return (
     <main className={styles.main}>
-      <img src={robotImg} alt="" className={styles.icon}/>
-      <h3>Personality Advice and Therapy Bot</h3>
+      <img src={fridgeImg} alt="" className={styles.icon}/>
+      <h3>Find Your Next Meal</h3>
 
       <form onSubmit={onSubmit}>
         <textarea 
           cols="30" 
-          rows="5"
+          rows="3"
           type="text" 
           name="help-description"
-          placeholder="Describe your personality/MBTI and your thoughts"
-          onChange = {(e) => setThoughtDescription(e.target.value)}></textarea>
-        <input type="submit" value="Get Insight"/>
+          placeholder="What's in your fridge?"
+          onChange = {(e) => setIngredients(e.target.value)}></textarea>
+        <input type="submit" value="Create Recipe!"/>
+        <pre>{recipe}</pre>
       </form>
     </main>
   )

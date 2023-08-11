@@ -27,7 +27,7 @@
     padding-top: 60px;
   }
   .main .icon {
-    width: 100px;
+    width: 200px;
   }
   .main h3 {
     font-size: 32px;
@@ -47,7 +47,9 @@
     border-radius: 4px;
     margin-bottom: 24px;
     outline-color: #10a37f;
-    word-break: break-word
+    word-break: break-word;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: medium;
   }
   .main ::placeholder {
     color: #8e8ea0;
@@ -65,4 +67,7 @@
   .main .result {
     margin-top: 40px;
     width: 69ch;
+  }
+  .main pre {
+    margin-left: -210px;
   }
