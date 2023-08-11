@@ -35,5 +35,7 @@ The front end is built with React, and the back end is built with Node.js and Ex
 ### References
 
 https://github.com/openai/openai-quickstart-node
+
 https://www.youtube.com/watch?v=kjUSOa_KOts
+
 https://github.com/alejandro-ao/openai-sql-generator/blob/main/README.md?plain=1
